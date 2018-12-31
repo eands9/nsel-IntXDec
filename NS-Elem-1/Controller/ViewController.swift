@@ -48,6 +48,11 @@ class ViewController: UIViewController {
     }
     
     func askQuestion(){
+/* SOLN:
+ 1) Write down the ones place digit
+ 2) Add the digits in the middle as you move from right to left
+ 3) The last number on the left should be same as the first number from the left of the problem being multiplied by 11
+ */
         randomNumA = Int.random(in: 100 ..< 10000)
 
         questionLabel.text = "\(randomNumA) X 11"
