@@ -23,8 +23,8 @@ class ViewController: UIViewController {
     var timer = Timer()
     var counter = 0.0
     var questionTxt : String = ""
-    var answerCorrect : Int = 0
-    var answerUser : Int = 0
+    var answerCorrect : Double = 0.00
+    var answerUser : Double = 0.00
     var isShow: Bool = false
     
     let congratulateArray = ["Great Job", "Excellent", "Way to go", "Alright", "Right on", "Correct", "Well done", "Awesome","Give me a high five"]
@@ -46,24 +46,13 @@ class ViewController: UIViewController {
     }
     
     func askQuestion(){
-        let wholeNum = Int.random(in: 2...20)
-        let wordNum = ["zero","one","two","three","four","five","six","seven","eight","nine"]
-        let thNum = ["zeroth","one","half","third","fourth","fifth","sixth","seventh","eighth","nineth"]
-        var numC = 0
-        var numD = 0
-        var numA = Int.random(in: 1...8)
-        var denA = Int.random(in: 2...9)
+        let numA = Int.random(in: 1...11)
+        let randomDenADivisor = Int.random(in: 2...8)
+        let denA = 100 / randomDenADivisor
+        let numC = (Double(numA * randomDenADivisor)) / 100
         
-        while numA >= denA{
-            numA = Int.random(in: 1...8)
-            denA = Int.random(in: 2...9)
-        }
-        
-        numC = wholeNum * denA
-        numD = numA * wholeNum
-        
-        questionLabel.text = "\(wordNum[numA])-\(thNum[denA]) of \(numC) is "
-        answerCorrect = numD
+        questionLabel.text = "\(numA) / \(denA) = ___ (decimal) "
+        answerCorrect = numC
     }
     
     @IBAction func showBtn(_ sender: Any) {
@@ -72,7 +61,7 @@ class ViewController: UIViewController {
     }
     
     func checkAnswer(){
-        answerUser = (answerTxt.text! as NSString).integerValue
+        answerUser = (answerTxt.text! as NSString).doubleValue
         
         if answerUser == answerCorrect && isShow == false {
             correctAnswers += 1
