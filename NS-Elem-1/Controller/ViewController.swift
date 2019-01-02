@@ -22,8 +22,6 @@ class ViewController: UIViewController {
     var numberAttempts: Int = 0
     var timer = Timer()
     var counter = 0.0
-
-    var randomNumA : Int = 0
     var questionTxt : String = ""
     var answerCorrect : Int = 0
     var answerUser : Int = 0
@@ -48,15 +46,24 @@ class ViewController: UIViewController {
     }
     
     func askQuestion(){
-/* SOLN:
- 1) Write down the ones place digit
- 2) Add the digits in the middle as you move from right to left
- 3) The last number on the left should be same as the first number from the left of the problem being multiplied by 11
- */
-        randomNumA = Int.random(in: 100 ..< 10000)
-
-        questionLabel.text = "\(randomNumA) X 11"
-        answerCorrect = randomNumA * 11
+        let wholeNum = Int.random(in: 2...20)
+        let wordNum = ["zero","one","two","three","four","five","six","seven","eight","nine"]
+        let thNum = ["zeroth","one","half","third","fourth","fifth","sixth","seventh","eighth","nineth"]
+        var numC = 0
+        var numD = 0
+        var numA = Int.random(in: 1...8)
+        var denA = Int.random(in: 2...9)
+        
+        while numA >= denA{
+            numA = Int.random(in: 1...8)
+            denA = Int.random(in: 2...9)
+        }
+        
+        numC = wholeNum * denA
+        numD = numA * wholeNum
+        
+        questionLabel.text = "\(wordNum[numA])-\(thNum[denA]) of \(numC) is "
+        answerCorrect = numD
     }
     
     @IBAction func showBtn(_ sender: Any) {
