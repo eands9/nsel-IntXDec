@@ -47,7 +47,7 @@ class ViewController: UIViewController {
     
     func askQuestion(){
         let numA = Int.random(in: 1...11)
-        let randomDenADivisor = Int.random(in: 2...8)
+        let randomDenADivisor = Int.random(in: 2...5)
         let denA = 100 / randomDenADivisor
         let numC = (Double(numA * randomDenADivisor)) / 100
         
