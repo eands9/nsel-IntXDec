@@ -46,13 +46,12 @@ class ViewController: UIViewController {
     }
     
     func askQuestion(){
-        let numA = Int.random(in: 1...11)
-        let randomDenADivisor = Int.random(in: 2...5)
-        let denA = 100 / randomDenADivisor
-        let numC = (Double(numA * randomDenADivisor)) / 100
+        let numA = Int.random(in: 2...19)
+        let denA = (Int.random(in: 3...7))*10
+        let numC = round((Double(numA) / Double(denA)) * 100) / 100
         
-        questionLabel.text = "\(numA) / \(denA) = ___ (decimal) "
-        answerCorrect = numC
+        questionLabel.text = "\(numA) / \(denA) = ___ % (mixed numbers) "
+        answerCorrect = numC * 100
     }
     
     @IBAction func showBtn(_ sender: Any) {
