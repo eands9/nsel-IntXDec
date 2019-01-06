@@ -46,9 +46,13 @@ class ViewController: UIViewController {
     }
     
     func askQuestion(){
-        let numA = Int.random(in: 10000...1000000)
-        questionLabel.text = "* \(numA) ÷ 111"
-        answerCorrect = Double(numA) / 111
+        let numA = Int.random(in: 2...9)
+        let numB = Int.random(in: 2...9)
+        let numC = Int.random(in: 2...99)
+        let numCDbl = Double(numC) / 100
+        let numD = Double(numB) + numCDbl
+        questionLabel.text = "\(numA) X \(numD)"
+        answerCorrect = round((Double(numA) * Double(numD)) * 100) / 100
     }
     
     @IBAction func showBtn(_ sender: Any) {
@@ -59,7 +63,7 @@ class ViewController: UIViewController {
     func checkAnswer(){
         answerUser = (answerTxt.text! as NSString).doubleValue
         
-        if answerUser >= (answerCorrect * 0.95) && answerUser <= (answerCorrect * 1.05) && isShow == false {
+        if answerUser == answerCorrect && isShow == false {
             correctAnswers += 1
             numberAttempts += 1
             updateProgress()
